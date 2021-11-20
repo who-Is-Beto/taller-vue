@@ -1,13 +1,24 @@
 <template>
   <div class="list-item">
-    <p>ahahah</p>
-    <button>d</button>
+    <p>{{ task.task }}</p>
+    <button @click="deleteTask(task)"><i class="fas fa-trash-alt"></i></button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ListItem"
+  name: 'ListItem',
+  props: {
+    task: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    deleteTask(task) {
+      this.$emit('delete-task', task);
+    }
+  }
 };
 </script>
 

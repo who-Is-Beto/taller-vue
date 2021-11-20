@@ -6,21 +6,19 @@
 </template>
 
 <script>
-import TaskList from "./components/taskLIst/TaskLIst.vue";
-import AddTask from "./components/addTask/AddTask.vue";
-import { Store, setTask } from "@/store/Store";
+import TaskList from './components/taskLIst/TaskLIst.vue';
+import AddTask from './components/addTask/AddTask.vue';
+import { setTask } from '@/store/Store';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     TaskList,
     AddTask
   },
   methods: {
     createTask(task) {
-      console.log("store", Store.tasks);
       setTask(task);
-      console.log("store", Store.tasks);
     }
   }
 };
@@ -39,7 +37,7 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   transition: all 0.2s ease-in-out;
 }
 

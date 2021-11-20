@@ -1,42 +1,32 @@
 <template>
-  <ul class="global-components list-container">
-    <li v-for="task in tasks" v-bind:key="task.id">
-      <ListItem />
-    </li>
-  </ul>
+  <div class="global-components">
+    <h3 v-if="tasks.length === 0">There's no tasks yet :c</h3>
+    <ul v-if="tasks.length > 0" class="list-container">
+      <li v-for="task in tasks" v-bind:key="task.id">
+        <ListItem @delete-task="handleDeleteTask" :task="task" />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import ListItem from "../listItem/LIstItem.vue";
+import ListItem from '../listItem/LIstItem.vue';
+import { Store, deleteTask } from '@/store/Store';
 
 export default {
-  name: "TaskList",
+  name: 'TaskList',
   components: {
     ListItem
   },
   data() {
     return {
-      tasks: [
-        {
-          id: 1,
-          title: "Task 1",
-          description: "Description 1",
-          done: false
-        },
-        {
-          id: 2,
-          title: "Task 2",
-          description: "Description 2",
-          done: false
-        },
-        {
-          id: 3,
-          title: "Task 3",
-          description: "Description 3",
-          done: false
-        }
-      ]
+      tasks: Store.tasks
     };
+  },
+  methods: {
+    handleDeleteTask(task) {
+      deleteTask(task);
+    }
   }
 };
 </script>
@@ -45,6 +35,7 @@ export default {
 ul {
   list-style: none;
   min-height: 60vh;
+  width: 100%;
 }
 
 .list-container {
@@ -59,5 +50,10 @@ li {
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+
+h3 {
+  text-align: center;
+  margin: 4rem 0;
 }
 </style>
