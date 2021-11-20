@@ -20,6 +20,7 @@ export default {
   width: 95%;
   background-color: var(--quaternary);
   border-radius: 0.5rem;
+  border: 2px solid var(--quinary);
 }
 
 button {
@@ -29,6 +30,7 @@ button {
   border: none;
   cursor: pointer;
   font-weight: bold;
+  border: 2px solid var(--quinary);
 }
 
 button:hover {

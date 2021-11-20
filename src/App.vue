@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <add-task />
+    <add-task @add-task="createTask" />
     <task-list />
   </div>
 </template>
@@ -8,23 +8,31 @@
 <script>
 import TaskList from "./components/taskLIst/TaskLIst.vue";
 import AddTask from "./components/addTask/AddTask.vue";
+import { Store, setTask } from "@/store/Store";
 
 export default {
   name: "App",
   components: {
     TaskList,
     AddTask
+  },
+  methods: {
+    createTask(task) {
+      console.log("store", Store.tasks);
+      setTask(task);
+      console.log("store", Store.tasks);
+    }
   }
 };
 </script>
 
 <style>
 :root {
-  --primary: #392833;
-  --secondary: #524652;
-  --tertiary: #7d716d;
-  --quaternary: #bfaca6;
-  --quinary: #f6e8ea;
+  --primary: #2a374a;
+  --secondary: #808097;
+  --tertiary: #cabcd9;
+  --quaternary: #e7dae7;
+  --quinary: #0c2724;
   --danger: #ff5252;
 }
 
@@ -40,7 +48,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem 2rem 3rem;
-  background-color: var(--primary);
+  background-color: var(--secondary);
 }
 
 #app {
@@ -53,8 +61,10 @@ body {
 }
 
 .global-components {
+  background-color: var(--secondary);
   padding: 1rem;
   width: 90%;
   border-radius: 1rem;
+  border: 2px solid var(--quinary);
 }
 </style>

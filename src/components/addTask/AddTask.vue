@@ -1,21 +1,34 @@
 <template>
   <div class="add-container global-components">
     <h2>Task list</h2>
-    <button>+</button>
+    <input type="text" v-model="taskValue" placeholder="Write your new task" />
+    <button @click="addTask">+</button>
   </div>
 </template>
 
 <script>
 export default {
-  AddTask: {
-    name: "AddTask"
+  name: "AddTask",
+  data() {
+    return {
+      taskValue: ""
+    };
+  },
+  methods: {
+    addTask() {
+      if (this.taskValue === "") {
+        alert("Please add a task");
+      } else {
+        this.$emit("add-task", this.taskValue);
+        this.taskValue = "";
+      }
+    }
   }
 };
 </script>
 
 <style scoped>
 .add-container {
-  background-color: var(--secondary);
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -43,15 +56,34 @@ button {
   cursor: pointer;
   font-weight: bold;
   background-color: var(--quaternary);
+  border: 2px solid var(--quinary);
 }
 
 button:hover {
   background-color: var(--primary);
   transform: rotate(360deg);
-  color: var(--quinary);
+  color: var(--quaternary);
+  -webkit-tap-highlight-color: transparent;
 }
 
 button:active {
   transform: scale(0.75);
+}
+
+input {
+  width: 90%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--tertiary);
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--primary);
+  outline: none;
+  border: 2px solid var(--primary);
+  margin: 0.5rem 0;
+}
+
+input::placeholder {
+  color: var(--primary);
 }
 </style>

@@ -44,7 +44,6 @@ export default {
 <style scoped>
 ul {
   list-style: none;
-  background-color: var(--secondary);
   min-height: 60vh;
 }
 
